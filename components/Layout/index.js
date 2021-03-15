@@ -1,18 +1,27 @@
 import Link from 'next/link';
 
-export default function Layout() {
+const navLinks = [
+  { path: '/', label: 'Blog', id: 1 },
+  { path: '/about', label: 'About', id: 2 },
+  { path: '/projects', label: 'Projects', id: 3 }
+];
+
+export default function Layout({ children }) {
   return (
-    <div className="p-10 font-mono">
+    <div className="p-10 font-mono max-w-screen-xl mx-auto">
       <nav className="bg-blue-400 p-5 flex justify-center">
-        <Link href="/">
-          <a className="shadow md:w-40 bg-blue-50 p-2 m-2 text-center hover:bg-gray-50">blog</a>
-        </Link>
-        <Link href="/about">
-          <a className="shadow md:w-40 bg-blue-50 p-2 m-2 text-center hover:bg-gray-50">about</a>
-        </Link>
+        {navLinks.map((link) => (
+          <Link key={link.id} href={link.path}>
+            <a className="shadow md:w-40 bg-blue-50 p-2 m-2 text-center hover:bg-gray-50">
+              {link.label}
+            </a>
+          </Link>
+        ))}
       </nav>
-      <mains className="bg-gray-100 p-5">tutaj bedzie tresc</mains>
-      <footer className="bg-blue-400 p-5 text-gray-100 text-center">stopka</footer>
+      <main className="bg-gray-100 p-5">{children}</main>
+      <footer className="bg-blue-400 p-5 text-gray-100 text-center">
+          {new Date().getFullYear()}
+      </footer>
     </div>
   );
 }

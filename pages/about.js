@@ -1,7 +1,13 @@
+import Layout from 'components/Layout';
+import Head from 'next/head';
+
 export default function About() {
   return (
-    <div className="">
-        About me
-    </div>
+    <Layout>
+      <Head>
+        <title>About</title>
+      </Head>
+      About
+    </Layout>
   );
 }
